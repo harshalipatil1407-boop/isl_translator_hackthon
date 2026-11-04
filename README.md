@@ -4,15 +4,15 @@ An automated, hands-free computer vision framework designed to bridge the commun
 
 ---
 
- Project & Team Overview
+## Project & Team Overview
 * **Challenge Track:** Human Impact
 * **Project Name:** Indian Sign Language (ISL) Real-Time Translator
-* **Team Name:** Harshali Patil & Team
+* **Team Name:** Hackuno
 * **Target Audience:** Non-verbal individuals, educators, healthcare professionals, and public service personnel.
 
 ---
 
- Problem Statement & Real-World Impact
+##  Problem Statement & Real-World Impact
 Over 1.8 million people in India rely on Indian Sign Language (ISL) as their primary mode of communication. However, a significant gap exists due to a lack of widespread ISL literacy among the general public. 
 
 Existing vision-based translation solutions often face key operational bottlenecks:
@@ -25,48 +25,48 @@ Our system provides a **fully automated, hands-free end-to-end pipeline** that d
 
 ---
 
-## 🏗️ System Architecture & Workflow
+## System Architecture & Workflow
 ### Detailed Execution Pipeline
-1. **Video Capture & Landmarking:** OpenCV captures real-time video frames (30 FPS). MediaPipe Hand Landmarker extracts **21 three-dimensional coordinates (x, y, z)** per hand, totaling **42 landmark coordinates** per frame.
-2. **Feature Vector Processing:** Spatial coordinates are normalized relative to hand bounding boxes to ensure scale and distance invariance.
-3. **Machine Learning Inference:** The feature vector is evaluated against a pre-trained **Random Forest Classifier** trained on custom ISL gesture samples.
-4. **Debounce & Cooldown Logic:** An automated temporal threshold filter validates gesture stability over successive frames before committing predictions.
-5. **Non-Blocking Speech Output:** A native **PowerShell System.Speech** execution bridge handles text-to-speech asynchronously, preventing webcam frame drops.
+1. **Video Capture & Landmarking:** OpenCV captures real-time video frames (30 FPS) with optimized color-space mapping (BGR to RGB). MediaPipe Hand Landmarker extracts **21 three-dimensional coordinates (x, y, z)** per hand, totaling **42 landmark coordinates** per frame.
+2. **Advanced Feature Vector Processing & Normalization:** Spatial coordinates are translated relative to wrist anchor points ($x_0, y_0, z_0$) and normalized against bounding box diagonal dimensions to ensure complete scale and distance invariance from the webcam sensor.
+3. **Machine Learning Inference:** The structured 42-dimensional feature vector is evaluated against a pre-trained **Random Forest Classifier** ensemble optimized for low-latency multi-class gesture classification.
+4. **Temporal Debounce & Cooldown Logic:** An automated sliding window state machine validates gesture stability over consecutive frames and enforces a strict timestamp cooldown buffer to prevent erratic multi-triggering.
+5. **Asynchronous Non-Blocking Speech Output:** Bypasses standard blocking thread locks (such as traditional `pyttsx3` freezes) by leveraging a native **PowerShell System.Speech** asynchronous subprocess execution bridge.
 
 ---
 
-## 🛠️ Complete Tech Stack
+##  Complete Tech Stack
 
 | Component | Technology / Library | Purpose |
 | :--- | :--- | :--- |
 | **Language** | Python 3.10+ | Core application logic and pipeline management |
 | **Computer Vision** | OpenCV (`cv2`) | Video stream capture, image processing, UI overlay rendering |
-| **Hand Tracking** | MediaPipe | Real-time 3D hand landmark localization (21 keypoints) |
-| **Machine Learning** | Scikit-Learn | Random Forest Classifier training and prediction engine |
-| **Data Serialization** | Joblib / Pickle | Serialized storage and fast loading of trained model weights |
-| **Speech Engine** | Windows PowerShell (`System.Speech`) | Native asynchronous text-to-speech synthesis without blocking UI |
+| **Hand Tracking** | MediaPipe | Real-time 3D hand landmark localization (21 keypoints per hand) |
+| **Machine Learning** | Scikit-Learn | Random Forest Classifier training, multi-class evaluation, and model inference |
+| **Data Serialization** | Joblib / Pickle | Serialized pipeline storage for ultra-fast model loading and low memory footprint |
+| **Speech Engine** | Windows PowerShell (`System.Speech`) | Native asynchronous text-to-speech synthesis without blocking the main event loop |
 
 ---
 
-## ⚙️ Key Technical Features & Innovation
+##  Key Technical Features & Innovation
 
-* **Zero-Touch Automation:** Hands-free execution without needing keyboard or mouse triggers.
-* **Asynchronous Audio Pipeline:** Solved the common `pyttsx3` thread lock issue by decoupling audio processing using native PowerShell commands.
-* **High-Accuracy Classification:** Optimized Random Forest model achieving high precision across single-word ISL signs under variable indoor lighting.
-* **Low Computational Overhead:** Lightweight landmark-based feature extraction running smoothly at 30+ FPS on CPU without needing dedicated GPU hardware.
-
----
-
-## 🔮 Future Scope & Roadmap
-
-While the current MVP successfully translates real-time single-word ISL gestures into continuous speech, our long-term vision includes:
-* **Full Sentence Formation & Speech Synthesis:** Developing dynamic sequence recognition to stitch continuous single-word ISL signs into grammatically coherent, fluid spoken sentences in real-time.
-* **Grammar & Context Correction:** Integrating lightweight LLMs to structure raw predicted sign tokens into natural native language sentence flows.
-* **Mobile & Web Deployment:** Converting the desktop pipeline into a lightweight web and mobile app using TensorFlow.js / ONNX runtime for universal accessibility.
+* **Zero-Touch Automation:** Fully hands-free real-time execution operating entirely without keyboard or mouse overrides.
+* **Asynchronous Audio Concurrency:** Solved standard Python audio thread lockouts by decoupling speech generation into isolated PowerShell background execution processes.
+* **High-Precision Spatial Inference:** Robust Random Forest model tuned to maintain high classification accuracy under variable indoor lighting conditions.
+* **Optimized CPU Performance:** Lightweight geometric feature extraction running smoothly at 30+ frames per second on standard CPU configurations without requiring dedicated GPU accelerators.
 
 ---
 
-## 🚀 Setup & Installation Guide
+##  Future Scope & Roadmap
+
+While the current MVP successfully translates real-time single-word ISL gestures into continuous speech, our long-term technical vision includes:
+* **Full Sentence Formation & Speech Synthesis:** Developing dynamic sequence recognition models (such as LSTMs or lightweight temporal transformers) to stitch continuous single-word ISL signs into grammatically coherent, fluid spoken sentences in real-time.
+* **Grammar & Context Correction:** Integrating lightweight local LLM wrappers to structure raw predicted sign tokens into natural native language sentence flows.
+* **Mobile & Web Deployment:** Converting the desktop pipeline into a lightweight web and cross-platform mobile app using TensorFlow.js / ONNX runtime.
+
+---
+
+##  Setup & Installation Guide
 
 ### Prerequisites
 * Windows 10 / 11 OS
