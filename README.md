@@ -75,5 +75,5 @@ While the current MVP successfully translates real-time single-word ISL gestures
 
 ### 1. Repository Setup
 ```bash
-git clone [https://github.com/harshalipatil1407-boop/isl_translator_hackathon.git](https://github.com/harshalipatil1407-boop/isl_translator_hackathon.git)
-cd isl_translator_hackathon
+git clone [https://github.com/harshalipatil1407-boop/isl_translator_hackthon.git](https://github.com/harshalipatil1407-boop/isl_translator_hackthon.git)
+cd isl_translator_hackthon
