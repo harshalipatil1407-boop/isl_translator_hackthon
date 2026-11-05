@@ -21,7 +21,7 @@ Existing vision-based translation solutions often face key operational bottlenec
 3. **High Latency & Resource Consumption:** Heavy deep learning models struggling on standard webcam hardware.
 
 ### Our Solution
-Our system provides a **fully automated, hands-free end-to-end pipeline** that detects sign language gestures from standard webcam feeds, classifies gestures using high-dimensional landmark geometry, and speaks the translated output asynchronously without UI freezing or speech repetition. This Currently working on gestures like( hello,bye,water,eat,no,help,need,pain,good/ok,stop,washroom)
+Our system provides a **fully automated, hands-free end-to-end pipeline** that detects sign language gestures from standard webcam feeds, classifies gestures using high-dimensional landmark geometry, and speaks the translated output asynchronously without UI freezing or speech repetition. This Currently working on gestures like( "hello,bye,water,eat,no,help,need,pain,good/ok,stop,washroom")
 
 ---
 
